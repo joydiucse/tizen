@@ -1,56 +1,8 @@
-<?php
-require 'vendor/autoload.php';
-
-$client = new Google_Client();
-$client->setAuthConfig('client_secret_1062878936543-o4b4nvf8dqrddn5hn2b0f1b22lfh990t.apps.googleusercontent.com.json');
-$client->setRedirectUri('http://localhost/');
-$client->addScope('https://www.googleapis.com/auth/calendar'); // Adjust the scope for your needs
-
-if (!isset($_GET['code'])) {
-    $authUrl = $client->createAuthUrl();
-    header('Location: ' . filter_var($authUrl, FILTER_SANITIZE_URL));
-} else {
-    $client->fetchAccessTokenWithAuthCode($_GET['code']);
-    $accessToken = $client->getAccessToken();
-    var_dump($accessToken); // Access token and related information
-}
-?>
 
 <?php
-exit;
-require_once 'vendor/autoload.php';
-
-$client = new Google_Client();
-$client->setAuthConfig('bigquery-service-account.json');
-$client->addScope('https://www.googleapis.com/auth/drive'); // Adjust the scope for your needs
-$client->setRedirectUri('https://j1-staging.toffeelive.com/'); // Your authorized redirect URI
-
-if (!isset($_GET['code'])) {
-    $authUrl = $client->createAuthUrl();
-    header('Location: ' . filter_var($authUrl, FILTER_SANITIZE_URL));
-} else {
-    $client->fetchAccessTokenWithAuthCode($_GET['code']);
-    $accessToken = $client->getAccessToken();
-    var_dump($accessToken); // Access token and related information
-}
-?>
-
-
-
-
-
-
-
-
-
-
-
-
-<?php
-exit;
 require 'vendor/autoload.php'; // Path to the Composer autoloader
 
-//use Google\Cloud\BigQuery\BigQueryClient;
+use Google\Cloud\BigQuery\BigQueryClient;
 
 // Create a BigQuery client with the JSON key file
 $bigQuery = new BigQueryClient([
